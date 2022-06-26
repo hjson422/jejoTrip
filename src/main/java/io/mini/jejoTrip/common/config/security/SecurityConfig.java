@@ -1,6 +1,6 @@
-package io.mini.jejoTrip.security;
+package io.mini.jejoTrip.common.config.security;
 
-import io.mini.jejoTrip.service.SignupService;
+import io.mini.jejoTrip.domain.users.service.UsersService;
 import lombok.AllArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -17,7 +17,7 @@ import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 @EnableWebSecurity
 @AllArgsConstructor
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
-    private SignupService signupService;
+    private UsersService usersService;
 
     @Bean
     public PasswordEncoder passwordEncoder() {
@@ -55,6 +55,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     public void configure(AuthenticationManagerBuilder auth) throws Exception {
-        auth.userDetailsService(signupService).passwordEncoder(passwordEncoder());
+        auth.userDetailsService(usersService).passwordEncoder(passwordEncoder());
     }
 }

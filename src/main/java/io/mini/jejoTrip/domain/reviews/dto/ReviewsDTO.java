@@ -1,14 +1,9 @@
-package io.mini.jejoTrip.domain.dto;
+package io.mini.jejoTrip.domain.reviews.dto;
 
-import io.mini.jejoTrip.domain.entity.Reviews;
-import io.mini.jejoTrip.domain.entity.Users;
+import io.mini.jejoTrip.domain.reviews.Reviews;
 import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
-
-import javax.persistence.Column;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 
 @Data
 @Getter

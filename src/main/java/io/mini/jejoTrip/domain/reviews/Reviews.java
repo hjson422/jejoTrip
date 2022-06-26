@@ -1,14 +1,13 @@
-package io.mini.jejoTrip.domain.entity;
+package io.mini.jejoTrip.domain.reviews;
 
+import static javax.persistence.FetchType.*;
+
+import io.mini.jejoTrip.domain.users.Users;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import net.bytebuddy.dynamic.loading.InjectionClassLoader;
 
-import javax.persistence.*;
-
-@Table(name = "REVIEW_TBL")
 import javax.persistence.*;
 
 @Entity
@@ -20,23 +19,22 @@ public class Reviews {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long rno;
+    private Long id;
 
-    @Column(nullable = false)
-    private String rev_title;
+    @Column
+    private String revTitle; // rev_title
 
-    @Column(nullable = false)
+    @Column
     private String tags;
 
-    @Column(nullable = false)
+    @Column
     private String content;
 
-    @Column(nullable = false)
+    @Column
     private String place;
 
-    @ManyToOne
-    @JoinColumn(name = "username")
+    @ManyToOne(fetch = LAZY)
+    @JoinColumn(name = "users", referencedColumnName = "id")
     private Users users;
-
 
 }

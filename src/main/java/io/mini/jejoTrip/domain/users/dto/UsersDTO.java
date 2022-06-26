@@ -1,12 +1,9 @@
-package io.mini.jejoTrip.domain.dto;
+package io.mini.jejoTrip.domain.users.dto;
 
-import io.mini.jejoTrip.domain.entity.Users;
+import io.mini.jejoTrip.domain.users.Users;
 import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
-
-import javax.management.relation.Role;
-import javax.persistence.*;
 
 @Data
 @Getter
@@ -31,10 +28,10 @@ public class UsersDTO {
     /*DTO -> Entity*/
     public Users toEntity() {
         Users users = Users.builder()
-                .username(username)
-                .password(password)
-                .realname(realname)
-                .nickname(nickname)
+                .userName(username)
+                .passWord(password)
+                .realName(realname)
+                .nickName(nickname)
                 .gender(gender)
                 .age(age)
                 .build();

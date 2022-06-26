@@ -1,9 +1,9 @@
-package io.mini.jejoTrip.service;
+package io.mini.jejoTrip.domain.users.service;
 
-import io.mini.jejoTrip.domain.dto.UsersDTO;
-import io.mini.jejoTrip.domain.entity.Role;
-import io.mini.jejoTrip.domain.entity.Users;
-import io.mini.jejoTrip.repository.UserRepository;
+import io.mini.jejoTrip.domain.users.dto.UsersDTO;
+import io.mini.jejoTrip.common.enums.Role;
+import io.mini.jejoTrip.domain.users.Users;
+import io.mini.jejoTrip.domain.users.repository.UserRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -21,22 +21,25 @@ import java.util.Optional;
 
 @Service
 @AllArgsConstructor
-public class SignupService implements UserDetailsService {
+@Transactional
+public class UsersService implements UserDetailsService {
     private UserRepository userRepository;
 
-    @Transactional
     public Long joinUser(UsersDTO usersDTO) {
         // 비밀번호 암호화
         BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
         usersDTO.setPassword(passwordEncoder.encode(usersDTO.getPassword()));
 
-        return userRepository.save(usersDTO.toEntity()).getUno();
+        return userRepository.save(usersDTO.toEntity()).getId();
     }
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        Optional<Users> usersWrapper = userRepository.findByUsername(username);
-        Users users = usersWrapper.get();
+//        Optional<Users> usersWrapper = userRepository.findByUsername(username);
+//        Users users = usersWrapper.get();
+
+        Users users = userRepository.findByUsername(username)
+            .orElseThrow(() -> new RuntimeException("존재하지 않는 회원입니다."));
 
         List<GrantedAuthority> authorities = new ArrayList<>();
 
@@ -46,7 +49,7 @@ public class SignupService implements UserDetailsService {
             authorities.add(new SimpleGrantedAuthority(Role.MEMBER.getValue()));
         }
 
-        return new User(users.getUsername(), users.getPassword(), authorities);
+        return new User(users.getUserName(), users.getPassWord(), authorities);
     }
 
 }

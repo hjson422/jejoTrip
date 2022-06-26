@@ -1,4 +1,4 @@
-package io.mini.jejoTrip.domain.entity;
+package io.mini.jejoTrip.common.enums;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

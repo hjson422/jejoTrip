@@ -1,14 +1,9 @@
-package io.mini.jejoTrip.domain.dto;
+package io.mini.jejoTrip.domain.reviews.dto;
 
-import io.mini.jejoTrip.domain.entity.Coment;
-import io.mini.jejoTrip.domain.entity.Users;
+import io.mini.jejoTrip.domain.reviews.Coments;
 import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
-
-import javax.persistence.Column;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 
 @Data
 @Getter
@@ -20,8 +15,8 @@ public class ComentDTO {
     private String coment_users;
 
 
-    public Coment toEntity() {
-        Coment coment = Coment.builder()
+    public Coments toEntity() {
+        Coments coment = Coments.builder()
                 .coment_num()
                 .rootComent()
                 .coment()
