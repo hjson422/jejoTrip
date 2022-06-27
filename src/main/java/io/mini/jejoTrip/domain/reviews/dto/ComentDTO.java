@@ -4,6 +4,7 @@ import io.mini.jejoTrip.domain.reviews.Coments;
 import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
+import org.yaml.snakeyaml.events.CommentEvent;
 
 @Data
 @Getter
@@ -15,14 +16,15 @@ public class ComentDTO {
     private String coment_users;
 
 
-    public Coments toEntity() {
-        Coments coment = Coments.builder()
-                .coment_num()
-                .rootComent()
-                .coment()
-                .coment_users()
-                .build();
-
-        return coment;
-    }
+//    public Coments toEntity() {
+//        Coments coment = Coments.builder()
+//                .rootComents()
+//                .coment()
+//                .coment_users()
+//                .build();
+//
+//        Comment comment
+//
+//        return coment;
+//    }
 }

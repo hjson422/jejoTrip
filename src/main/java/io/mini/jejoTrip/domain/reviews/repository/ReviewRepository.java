@@ -10,7 +10,7 @@ import java.util.Optional;
 @Repository
 public interface ReviewRepository extends JpaRepository<Reviews, Long> {
 
-    Optional<Reviews> findByTag(String tag);
+    Optional<Reviews> findByTags(String tag);
 
     List<Reviews> findByPlace(String place);
 }

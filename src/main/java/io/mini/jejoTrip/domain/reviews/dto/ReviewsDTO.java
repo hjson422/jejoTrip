@@ -13,14 +13,14 @@ public class ReviewsDTO {
     private String rev_title;
     private String tags;
     private String content;
-    private String username;
+    private String userName;
     private String place;
 
 
 
     public Reviews toEntity() {
         Reviews reviews = Reviews.builder()
-                .rev_title(rev_title)
+                .revTitle(rev_title)
                 .tags(tags)
                 .content(content)
                 .place(place)

@@ -12,7 +12,7 @@ public class UsersDTO {
 
     private Long uno;
 
-    private String username; //사용자 e-mail
+    private String userName; //사용자 e-mail
 
     private String password;
 
@@ -28,7 +28,7 @@ public class UsersDTO {
     /*DTO -> Entity*/
     public Users toEntity() {
         Users users = Users.builder()
-                .userName(username)
+                .userName(userName)
                 .passWord(password)
                 .realName(realname)
                 .nickName(nickname)

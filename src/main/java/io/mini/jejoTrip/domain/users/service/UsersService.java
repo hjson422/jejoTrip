@@ -38,7 +38,7 @@ public class UsersService implements UserDetailsService {
 //        Optional<Users> usersWrapper = userRepository.findByUsername(username);
 //        Users users = usersWrapper.get();
 
-        Users users = userRepository.findByUsername(username)
+        Users users = userRepository.findByUserName(username)
             .orElseThrow(() -> new RuntimeException("존재하지 않는 회원입니다."));
 
         List<GrantedAuthority> authorities = new ArrayList<>();
