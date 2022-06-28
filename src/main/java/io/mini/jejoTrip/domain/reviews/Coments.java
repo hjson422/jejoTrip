@@ -2,6 +2,7 @@ package io.mini.jejoTrip.domain.reviews;
 
 import static javax.persistence.FetchType.LAZY;
 
+import io.mini.jejoTrip.domain.reviews.dto.ComentDTO;
 import io.mini.jejoTrip.domain.reviews.repository.ReviewRepository;
 import io.mini.jejoTrip.domain.users.Users;
 import lombok.AllArgsConstructor;
@@ -15,6 +16,7 @@ import javax.persistence.*;
 @Entity
 @NoArgsConstructor
 @AllArgsConstructor
+@Builder
 @Getter
 public class Coments {
 
@@ -31,8 +33,13 @@ public class Coments {
 
     @ManyToOne(fetch = LAZY)
     @JoinColumn(name = "users", referencedColumnName = "id")
-    private Users users;
+    private Reviews reviews;
 
+    public static Coments ofCreate(ComentDTO comentDTO){
+        Coments instance = new Coments();
+        instance.content = comentDTO.getComent();
+        return instance;
+    }
 
     }
 

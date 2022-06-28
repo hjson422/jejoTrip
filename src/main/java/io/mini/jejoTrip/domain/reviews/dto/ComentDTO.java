@@ -11,11 +11,17 @@ import org.yaml.snakeyaml.events.CommentEvent;
 @Setter
 public class ComentDTO {
     private Long id;
+    private Long userId;
     private String rootComent;
     private String coment;
     private String nickName;
 
 
+    public Coments convertToComent(){
+        return Coments.builder()
+            .content(this.getComent())
+            .build();
+    }
 //    public Coments toEntity() {
 //        Coments coment = Coments.builder()
 //                .rootComents()

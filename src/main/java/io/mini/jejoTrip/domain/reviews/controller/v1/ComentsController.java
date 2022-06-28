@@ -4,7 +4,9 @@ package io.mini.jejoTrip.domain.reviews.controller.v1;
 import io.mini.jejoTrip.domain.reviews.Coments;
 import io.mini.jejoTrip.domain.reviews.dto.ComentDTO;
 import io.mini.jejoTrip.domain.reviews.service.ComentService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -14,30 +16,44 @@ import java.util.List;
 import static org.springframework.http.ResponseEntity.ok;
 
 @RestController
-@RequestMapping("/")
+@RequestMapping("/comments")
+@RequiredArgsConstructor
 public class ComentsController {
 
-    @Autowired
-    ComentService service;
+    // 필드 인젝션은 좋은 방법이 아닙니다
+//    @Autowired
+//    ComentService service;
+
+    // 생성자 인젝션
+    private final ComentService comentService;
 
 
-    @GetMapping("/review/{id}/coment")
-    public ResponseEntity<List<ComentDTO>> getComent(@PathVariable("id")Long id){
-       return ResponseEntity.ok(service.getComents(id));
+    @PostMapping
+    public ResponseEntity<?> create(ComentDTO comentDTO){
+        comentService.create(comentDTO);
+        return ResponseEntity.ok(HttpStatus.CREATED);
     }
 
-    @DeleteMapping("/review/{id}/coment/{id}")
-    public void deleteComent(@PathVariable("id")Long id)
+    @GetMapping("/review")
+    public ResponseEntity<?> getComent(
+
+        @RequestParam Long reviewId
+    ){
+
+        return ResponseEntity.ok(comentService.getComments(reviewId));
+    }
+
+    @DeleteMapping("{comentsId}")
+    public ResponseEntity<?> deleteComent(@PathVariable Long comentsId)
                               {
-        service.deleteComent(id);
-        System.out.println(id + "댓글 삭제 완료");
+        comentService.deleteComent(comentsId);
+        return ResponseEntity.ok(HttpStatus.OK);
     }
 
-    @PutMapping("/review/{id}/coment/{id}")
-    public void putComent(@PathVariable("id") Long id,
-                          ComentDTO dto) {
+    @PutMapping("")
+    public ResponseEntity<?> updateComent() {
 
-        service.updateComent(id,dto);
-        System.out.println(id + "댓글 수정 완료");
+
+        return ResponseEntity.ok(comentService.updateComent());
     }
 }

@@ -13,4 +13,6 @@ public interface ReviewRepository extends JpaRepository<Reviews, Long> {
     List<Reviews> findByTags(String tags);
 
     List<Reviews> findByPlaces(String places);
+
+
 }
