@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml" xmlns:sec="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://kit.fontawesome.com/a4ab028ddc.js" crossorigin="anonymous"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Dongle:wght@300&family=Gamja+Flower&family=Gugi&family=Jua&family=Kdam+Thmor+Pro&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/css/review.css"/>
+    <title>Review</title>
+
+    <script>
+        function toggleD(obj) {
+            if (obj.style.display == 'none')
+            obj.style.display = '';
+            else
+            obj.style.display = 'none';
+            }
+    </script>
+
+</head>
+
+<body>
+<div class="menu">
+    <input type="checkbox" id="menuicon">
+    <label for="menuicon">
+        <span></span>
+        <span></span>
+        <span></span>
+    </label>
+
+    <div class="sidebar">
+        <div class="logo">
+            <i class="fa-solid fa-ferry"></i>
+            <p>&nbsp; JeJu Island</p>
+        </div><hr>
+
+        <ul class="mainmenu">
+            <li class="item" id="account">
+                <a href="#account" class="btn">Place</a>
+                <div class="subMenu">
+                    <a href="#">한라산</a>
+                    <a href="#">성산일출봉</a>
+                    <a href="#">천지연폭포</a>
+                    <a href="#">협재해수욕장</a>
+                    <a href="#">오셜록</a>
+                    <a th:href="@{/menu/woodo}">우도</a>
+                </div>
+            </li>
+
+            <li class="item">
+                <a th:href="@{/review/reviewhome}" class="btn">Review</a>
+            </li>
+
+            <li class="item" id="my">
+                <a href="#" class="btn">MyInfo</a>
+                <div class="subMenu">
+                    <a href="#">내가 쓴 리뷰</a>
+                    <a href="#">회원 탈퇴</a>
+                </div>
+            </li>
+        </ul>
+        <label for="menuicon"></label>
+
+        <button type="button" class="logout" th:onClick="|location.href='@{/user/logout}'|">로그아웃</button>
+    </div>
+
+    <div class="header">
+        <a th:href="@{/review/home}"><i class="fa-solid fa-house-user"></i></a>
+        <h1>R E V I E W</h1>
+    </div>
+</div><hr>
+
+<div class="box">
+    <a sec:authorize="hasRole('ROLE_MEMBER')" th:href="@{/review/register}">리뷰쓰러가기</a>
+    검색 : <input type="search">
+    <button type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
+</div>
+
+<div id="div1" style='display:none;'>
+    <h1>천지연폭포 여행</h1>
+    <h4>작성날짜 : 2020-08-18 <br>작성자 : 박영미</h4><hr>
+    <h3>가족여행으로 꼭 아이들 데리고 방문해보고싶었던 추억의 장소. 20년전에도 그랬고 지금도 그랬고 멋있고 좋다.
+        가족여행으로 꼭 아이들 데리고 방문해보고싶었던 추억의 장소. 20년전에도 그랬고 지금도 그랬고 멋있고 좋다.
+        가족여행으로 꼭 아이들 데리고 방문해보고싶었던 추억의 장소. 20년전에도 그랬고 지금도 그랬고 멋있고 좋다.
+        가족여행으로 꼭 아이들 데리고 방문해보고싶었던 추억의 장소. 20년전에도 그랬고 지금도 그랬고 멋있고 좋다.
+    </h3>
+</div>
+
+<div id="div2" style='display:none;'>
+    <h1>천지연폭포 여행</h1>
+    <h4>작성날짜 : 2020-08-18 <br>작성자 : 박영미</h4><hr>
+    <h3>가족여행으로 꼭 아이들 데리고 방문해보고싶었던 추억의 장소. 20년전에도 그랬고 지금도 그랬고 멋있고 좋다.
+        가족여행으로 꼭 아이들 데리고 방문해보고싶었던 추억의 장소. 20년전에도 그랬고 지금도 그랬고 멋있고 좋다.
+        가족여행으로 꼭 아이들 데리고 방문해보고싶었던 추억의 장소. 20년전에도 그랬고 지금도 그랬고 멋있고 좋다.
+        가족여행으로 꼭 아이들 데리고 방문해보고싶었던 추억의 장소. 20년전에도 그랬고 지금도 그랬고 멋있고 좋다.
+    </h3>
+</div>
+
+
+<div class="text1">
+    <div class="review1">
+        <a style='cursor:hand' onclick=toggleD(div1);><img src="/img/review1.png"/></a>
+        <h5>&lt;천지연폭포&gt;</h5>
+        <p>제목 : 천지연폭포 여행</p>
+        <p>작성날짜 : 2020-08-18</p>
+        <p>작성자 : </p>
+    </div>
+
+    <div class="review2">
+        <a style='cursor:hand' onclick=toggleD(div2);><img src="/img/review1.png"/></a>
+        <h5>&lt;천지연폭포&gt;</h5>
+        <p>제목 : 천지연폭포 여행</p>
+        <p>작성날짜 : 2020-08-18</p>
+        <p>작성자 : </p>
+    </div>
+
+    <div class="review3">
+        <img src="/img/review1.png"/>
+        <h5>&lt;천지연폭포&gt;</h5>
+        <p>제목 : 천지연폭포 여행</p>
+        <p>작성날짜 : 2020-08-18</p>
+        <p>작성자 : </p>
+    </div>
+</div>
+
+
+<div class="text2">
+    <div class="review4">
+        <img src="/img/review1.png"/>
+        <h5>&lt;천지연폭포&gt;</h5>
+        <p>제목 : 천지연폭포 여행</p>
+        <p>작성시간 : 2020-08-18</p>
+        <p>작성자 : </p>
+    </div>
+
+    <div class="review5">
+        <img src="/img/review1.png"/>
+        <h5>&lt;천지연폭포&gt;</h5>
+        <p>제목 : 천지연폭포 여행</p>
+        <p>작성날짜 : 2020-08-18</p>
+        <p>작성자 : </p>
+    </div>
+
+    <div class="review6">
+        <img src="/img/review1.png"/>
+        <h5>&lt;천지연폭포&gt;</h5>
+        <p>제목 : 천지연폭포 여행</p>
+        <p>작성날짜 : 2020-08-18</p>
+        <p>작성자 : </p>
+    </div>
+</div>
+
+<div class="footer">
+
+</div>
+
+</body>
+</html>

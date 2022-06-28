@@ -9,21 +9,22 @@ import lombok.Setter;
 @Getter
 @Setter
 public class ReviewsDTO {
-    private Long rno;
-    private String rev_title;
+    private Long id;
+    private String revTitles;
     private String tags;
-    private String content;
-    private String userName;
-    private String place;
+    private String contents;
+    private String nickNames;
+    private String places;
 
 
 
     public Reviews toEntity() {
         Reviews reviews = Reviews.builder()
-                .revTitle(rev_title)
+                .revTitles(revTitles)
                 .tags(tags)
-                .content(content)
-                .place(place)
+                .contents(contents)
+                .places(places)
+                .nickNames(nickNames)
                 .build();
         return reviews;
     }

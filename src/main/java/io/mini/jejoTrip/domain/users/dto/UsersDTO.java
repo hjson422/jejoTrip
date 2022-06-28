@@ -10,17 +10,17 @@ import lombok.Setter;
 @Setter
 public class UsersDTO {
 
-    private Long uno;
+    private Long id;
 
     private String userName; //사용자 e-mail
 
-    private String password;
+    private String passWord;
 
-    private String realname; //실명
+    private String realName; //실명
 
-    private String nickname; //별명
+    private String nickName; //별명
 
-    private String gender;
+    private String sex;
 
     private int age;
 
@@ -29,10 +29,10 @@ public class UsersDTO {
     public Users toEntity() {
         Users users = Users.builder()
                 .userName(userName)
-                .passWord(password)
-                .realName(realname)
-                .nickName(nickname)
-                .gender(gender)
+                .passWord(passWord)
+                .realName(realName)
+                .nickName(nickName)
+                .sex(sex)
                 .age(age)
                 .build();
         return  users;

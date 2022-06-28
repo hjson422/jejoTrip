@@ -13,11 +13,14 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
+import java.util.UUID;
+
 @Configuration
 @EnableWebSecurity
 @AllArgsConstructor
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
     private UsersService usersService;
+
 
     @Bean
     public PasswordEncoder passwordEncoder() {
@@ -49,6 +52,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .logoutSuccessUrl("/user/logout/result")
                 .invalidateHttpSession(true)
                 .and();
+
+
                 // 403 예외처리 핸들링    이거 어떻게 써야되는지 모르겠음 ㅎ
 //                .exceptionHandling().accessDeniedPage("/user/denied");
     }

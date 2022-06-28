@@ -30,7 +30,7 @@ public class Users {
     private String nickName;
 
     @Column
-    private String gender;
+    private String sex;
 
     @Column
     private Integer age;

@@ -22,19 +22,18 @@ public class Reviews {
     private Long id;
 
     @Column
-    private String revTitle; // rev_title
+    private String revTitles; // rev_title
 
     @Column
     private String tags;
 
     @Column
-    private String content;
+    private String contents;
 
     @Column
-    private String place;
+    private String places;
 
-    @ManyToOne(fetch = LAZY)
-    @JoinColumn(name = "users", referencedColumnName = "id")
-    private Users users;
+    @Column
+    private String nickNames;
 
 }

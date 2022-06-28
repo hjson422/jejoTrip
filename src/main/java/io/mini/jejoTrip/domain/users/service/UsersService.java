@@ -1,10 +1,12 @@
 package io.mini.jejoTrip.domain.users.service;
 
+import io.mini.jejoTrip.domain.users.dto.LoginDTO;
 import io.mini.jejoTrip.domain.users.dto.UsersDTO;
 import io.mini.jejoTrip.common.enums.Role;
 import io.mini.jejoTrip.domain.users.Users;
 import io.mini.jejoTrip.domain.users.repository.UserRepository;
 import lombok.AllArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.User;
@@ -28,7 +30,7 @@ public class UsersService implements UserDetailsService {
     public Long joinUser(UsersDTO usersDTO) {
         // 비밀번호 암호화
         BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
-        usersDTO.setPassword(passwordEncoder.encode(usersDTO.getPassword()));
+        usersDTO.setPassWord(passwordEncoder.encode(usersDTO.getPassWord()));
 
         return userRepository.save(usersDTO.toEntity()).getId();
     }
@@ -51,5 +53,7 @@ public class UsersService implements UserDetailsService {
 
         return new User(users.getUserName(), users.getPassWord(), authorities);
     }
+
+
 
 }

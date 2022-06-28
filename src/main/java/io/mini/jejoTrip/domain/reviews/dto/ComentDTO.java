@@ -10,10 +10,10 @@ import org.yaml.snakeyaml.events.CommentEvent;
 @Getter
 @Setter
 public class ComentDTO {
-    private Long coment_num;
+    private Long id;
     private String rootComent;
     private String coment;
-    private String coment_users;
+    private String nickName;
 
 
 //    public Coments toEntity() {

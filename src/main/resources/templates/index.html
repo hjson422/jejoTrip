@@ -2,15 +2,49 @@
 <html lang="en" xmlns:th="http://www.w3.org/1999/xhtml" xmlns:sec="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
-    <title>메인</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://kit.fontawesome.com/a4ab028ddc.js" crossorigin="anonymous"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Jua&family=Kdam+Thmor+Pro&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/index.css">
+    <title>첫페이지</title>
 </head>
 <body>
-<h1>메인 페이지</h1>
-<hr>
-<a sec:authorize="isAnonymous()" th:href="@{/user/login}">로그인</a>
-<a sec:authorize="isAuthenticated()" th:href="@{/user/logout}">로그아웃</a>
-<a sec:authorize="isAnonymous()" th:href="@{/user/signup}">회원가입</a>
-<a sec:authorize="hasRole('ROLE_MEMBER')" th:href="@{/user/info}">내정보</a>
+<div class="header">
+    <h1>JeJu &nbsp; Island</h1>
+</div>
 
+
+<div class="main">
+    <img id="map" src="img/map.png">
+
+
+</div>
+
+
+<div class="footer">
+    <div class="icons">
+
+        <a sec:authorize="isAnonymous()" th:href="@{/review/reviewhome}"><i class="fa-brands fa-stack-exchange"></i></a>
+        <a sec:authorize="hasRole('ROLE_MEMBER')" th:href="@{/review/reviewhome}"><i class="fa-brands fa-stack-exchange"></i></a>
+        <a sec:authorize="isAnonymous()" th:href="@{/user/login}"><i class="fa-solid fa-right-to-bracket"></i></a>
+        <a sec:authorize="hasRole('ROLE_MEMBER')" th:href="@{/user/logout}"><i class="fa-solid fa-right-from-bracket"></i></a>
+        <a sec:authorize="isAnonymous()" th:href="@{/user/signup}"><i class="fa-solid fa-user-pen"></i></a>
+        <a sec:authorize="hasRole('ROLE_MEMBER')" th:href="@{/user/info}"><i class="fa-solid fa-circle-user"></i></a>
+
+    </div>
+
+    <div class="text">
+        <a sec:authorize="isAnonymous()" th:href="@{/review/reviewhome}">Review</a>
+        <a sec:authorize="hasRole('ROLE_MEMBER')" th:href="@{/review/reviewhome}">Review</a>
+        <a sec:authorize="isAnonymous()" th:href="@{/user/login}">Login</a>
+        <a sec:authorize="hasRole('ROLE_MEMBER')" th:href="@{/user/logout}">Logout</a>
+        <a sec:authorize="isAnonymous()" th:href="@{/user/signup}">Signup</a>
+        <a sec:authorize="hasRole('ROLE_MEMBER')" th:href="@{/user/info}">MyInfo</a>
+
+    </div>
+
+
+</div>
 </body>
 </html>

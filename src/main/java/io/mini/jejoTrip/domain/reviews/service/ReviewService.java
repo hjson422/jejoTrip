@@ -22,9 +22,15 @@ public class ReviewService  {
     }
 
    @Transactional(readOnly = true)
-    public String searchArticleByPlace(String place){
-        List<Reviews> result = reviewRepository.findByPlace(place);
-        return "??";
+    public List<Reviews> searchArticleByPlace(String place){
+        List<Reviews> result = reviewRepository.findByPlaces(place);
+        return result;
    }
+
+    @Transactional(readOnly = true)
+    public List<Reviews> searchArticleByTag(String tags){
+        List<Reviews> result = reviewRepository.findByTags(tags);
+        return result;
+    }
 
 }
