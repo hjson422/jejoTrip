@@ -1,5 +1,6 @@
 package io.mini.jejoTrip.domain.users;
 
+import io.mini.jejoTrip.domain.users.dto.UsersDTO;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -18,13 +19,13 @@ public class Users {
     private Long id;
 
     @Column
-    private String userName; //사용자 e-mail
+    private String email; //사용자 e-mail
 
     @Column
-    private String passWord;
+    private String password;
 
     @Column
-    private String realName;
+    private String name;
 
     @Column
     private String nickName;
@@ -34,6 +35,19 @@ public class Users {
 
     @Column
     private Integer age;
+
+
+    public UsersDTO convertToUsersDTO(){
+        return UsersDTO.builder()
+            .id(this.id)
+            .email(this.email)
+            .password(this.password)
+            .name(this.name)
+            .nickName(this.nickName)
+            .sex(this.sex)
+            .age(this.age)
+            .build();
+    }
 
 
 }

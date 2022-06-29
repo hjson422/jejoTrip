@@ -30,7 +30,7 @@ public class UsersService implements UserDetailsService {
     public Long joinUser(UsersDTO usersDTO) {
         // 비밀번호 암호화
         BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
-        usersDTO.setPassWord(passwordEncoder.encode(usersDTO.getPassWord()));
+        usersDTO.setPassword(passwordEncoder.encode(usersDTO.getPassword()));
 
         return userRepository.save(usersDTO.toEntity()).getId();
     }
@@ -51,7 +51,7 @@ public class UsersService implements UserDetailsService {
             authorities.add(new SimpleGrantedAuthority(Role.MEMBER.getValue()));
         }
 
-        return new User(users.getUserName(), users.getPassWord(), authorities);
+        return new User(users.getName(), users.getPassword(), authorities);
     }
 
 

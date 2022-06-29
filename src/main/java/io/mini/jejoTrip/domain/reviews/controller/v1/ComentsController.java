@@ -1,17 +1,13 @@
 package io.mini.jejoTrip.domain.reviews.controller.v1;
 
 
-import io.mini.jejoTrip.domain.reviews.Coments;
-import io.mini.jejoTrip.domain.reviews.dto.ComentDTO;
+import io.mini.jejoTrip.domain.reviews.controller.v1.request.CommentsCreateRequest;
+import io.mini.jejoTrip.domain.reviews.controller.v1.request.CommentsModifyRequest;
 import io.mini.jejoTrip.domain.reviews.service.ComentService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
-import java.lang.annotation.Documented;
-import java.util.List;
 
 import static org.springframework.http.ResponseEntity.ok;
 
@@ -29,12 +25,12 @@ public class ComentsController {
 
 
     @PostMapping
-    public ResponseEntity<?> create(ComentDTO comentDTO){
-        comentService.create(comentDTO);
+    public ResponseEntity<?> create(CommentsCreateRequest request){
+        comentService.create(request);
         return ResponseEntity.ok(HttpStatus.CREATED);
     }
 
-    @GetMapping("/review")
+    @GetMapping()
     public ResponseEntity<?> getComent(
 
         @RequestParam Long reviewId
@@ -43,17 +39,20 @@ public class ComentsController {
         return ResponseEntity.ok(comentService.getComments(reviewId));
     }
 
-    @DeleteMapping("{comentsId}")
-    public ResponseEntity<?> deleteComent(@PathVariable Long comentsId)
+    @DeleteMapping("/{commentsId}")
+    public ResponseEntity<?> deleteComent(@PathVariable Long commentsId)
                               {
-        comentService.deleteComent(comentsId);
+        comentService.deleteComent(commentsId);
         return ResponseEntity.ok(HttpStatus.OK);
     }
 
-    @PutMapping("")
-    public ResponseEntity<?> updateComent() {
+    @PutMapping("/{commentsId}/update")
+    public ResponseEntity<?> updateComent(
+        @PathVariable Long commentsId,
+        @RequestBody CommentsModifyRequest request
+    ) {
 
 
-        return ResponseEntity.ok(comentService.updateComent());
+        return ResponseEntity.ok(comentService.updateComments(commentsId, request));
     }
 }

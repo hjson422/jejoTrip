@@ -1,16 +1,13 @@
 package io.mini.jejoTrip.domain.reviews.repository;
 
-import io.mini.jejoTrip.domain.reviews.Coments;
-import io.mini.jejoTrip.domain.reviews.Reviews;
+import io.mini.jejoTrip.domain.reviews.Comments;
 import java.util.List;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import java.util.Optional;
-
 @Repository
-public interface ComentRepository extends JpaRepository<Coments, Long> {
+public interface ComentRepository extends JpaRepository<Comments, Long> {
 
-    List<Coments> findByReviewsId(Long reviewId);
+    List<Comments> findByReviewsId(Long reviewId);
 
 }

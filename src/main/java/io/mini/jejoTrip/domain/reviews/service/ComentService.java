@@ -1,14 +1,16 @@
 package io.mini.jejoTrip.domain.reviews.service;
 
-import io.mini.jejoTrip.domain.reviews.Coments;
-import io.mini.jejoTrip.domain.reviews.dto.ComentDTO;
+import io.mini.jejoTrip.domain.reviews.Comments;
+import io.mini.jejoTrip.domain.reviews.Reviews;
+import io.mini.jejoTrip.domain.reviews.controller.v1.request.CommentsCreateRequest;
+import io.mini.jejoTrip.domain.reviews.controller.v1.request.CommentsModifyRequest;
+import io.mini.jejoTrip.domain.reviews.dto.CommentsDTO;
 import io.mini.jejoTrip.domain.reviews.repository.ComentRepository;
 import io.mini.jejoTrip.domain.reviews.repository.ReviewRepository;
 import io.mini.jejoTrip.domain.users.Users;
 import io.mini.jejoTrip.domain.users.repository.UserRepository;
+import java.util.stream.Collectors;
 import lombok.RequiredArgsConstructor;
-import org.modelmapper.TypeToken;
-import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -24,24 +26,42 @@ public class ComentService {
 
     private final ReviewRepository reviewRepository;
     public void deleteComent(Long id) {
+
+        comentRepository.deleteById(id);
+
     }
 
-    public void updateComent(Long id, ComentDTO dto) {
+    public CommentsDTO updateComments(Long id, CommentsModifyRequest request) {
+
+        Comments comments = comentRepository.findById(id)
+            .orElseThrow(() -> new RuntimeException("존재하지 않는 댓글입니다."));
+
+        comments.update(request.getContent());
+        return comments.convertToCommentsDTO();
     }
 
 
 
-    public List<ComentDTO> getComments(Long reviewId) {
+    public List<CommentsDTO> getComments(Long reviewId) {
 
-        List<Coments> byReviewsId = comentRepository.findByReviewsId(reviewId);
+        List<Comments> comments = comentRepository.findByReviewsId(reviewId);
         // dto로 변환 후 return
+        List<CommentsDTO> commentsDTOList = comments.stream().map(Comments::convertToCommentsDTO)
+            .collect(Collectors.toList());
 
+        return commentsDTOList;
 
 
     }
 
-    public void create(ComentDTO comentDTO){
-        Coments coments = Coments.ofCreate(comentDTO);
-        comentRepository.save(coments);
+    public void create(CommentsCreateRequest request){
+
+        Reviews reviews = reviewRepository.findById(request.getReviewsId())
+            .orElseThrow(() -> new RuntimeException("리뷰가 존재하지 않습니다."));
+        Users users = userRepository.findById(request.getUsersId())
+            .orElseThrow(() -> new RuntimeException("존재하지 않는 유저입니다."));
+
+        Comments comments = Comments.ofCreate(request.getContent(), users, reviews);
+        comentRepository.save(comments);
     }
 }
